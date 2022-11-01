@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017', {
-    dbName:'assignment',
+mongoose.connect('mongodb+srv://mahum:mahum438@cluster0.m4zar48.mongodb.net/test', {
+    dbName:'JOJO',
     useNewUrlParser:true,
     useUnifiedTopology:true,
 
