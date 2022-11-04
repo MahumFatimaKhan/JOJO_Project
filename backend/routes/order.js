@@ -8,8 +8,9 @@ const orderController = require('../controllers/order_controllers')
 router.post('/newOrder', orderController.newOrder);
 
 // ADMIN ACCESS NEEDED
-router.delete('/deleteOrder/:id', verifyAccessToken, adminMiddleware, orderController.deleteOrder);
-router.get('/getOrders', verifyAccessToken, adminMiddleware, orderController.getOrders);
+router.delete('/deleteOrder/:id', verifyAccessToken, adminMiddleware, orderController.deleteOrder)
+router.get('/getOrders', verifyAccessToken, adminMiddleware, orderController.getOrders)
+router.get('/getOrderById/:id', verifyAccessToken, adminMiddleware, orderController.getOrderById)
 
 
 

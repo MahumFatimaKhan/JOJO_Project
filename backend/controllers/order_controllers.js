@@ -5,6 +5,8 @@ const Product = require('../models/product_model')
 
 
 module.exports = {
+
+  // USER
   newOrder: async (req, res, next) => {
     const {
       shippingInfo,
@@ -30,13 +32,28 @@ module.exports = {
     })
 
     order.save().then(result => {
-      res.status(201).json(result)
+      result.orderDetails.forEach(async (order) => {
+        const product = await Product.findById(order.productID);
+        product.stock -= order.quantity;
+        await product.save({ validateBeforeSave: false });
+        res.status(201).json({
+          message: err
+        })
+      })
     })
       .catch(err => {
         res.status(500).json({
           error: err
         })
       })
+  },
+
+  // ADMIN
+  getOrderById: async (req, res, next) => {
+    const order = await Order.findById(req.params.id)
+    if (!order) {
+      return next(new Error("Order not found with this Id", 404))
+    }
   },
 
   getOrders: async (req, res, next) => {
