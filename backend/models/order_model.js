@@ -1,4 +1,4 @@
-const { array } = require('@hapi/joi');
+const { array, string } = require('@hapi/joi');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -7,7 +7,8 @@ const orderSchema = new mongoose.Schema({
     address: { type: String, required: true },
     country: { type: String, required: true },
     city: { type: String, required: true },
-    phone: { type: String, required: true }
+    phone: { type: String, required: true },
+    email: { type: String, required: true }
   },
   orderDetails: [{
     // name: {type: String, required: true},

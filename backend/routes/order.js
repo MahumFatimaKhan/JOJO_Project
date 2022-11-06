@@ -11,6 +11,7 @@ router.post('/newOrder', orderController.newOrder)
 router.delete('/deleteOrder/:id', verifyAccessToken, adminMiddleware, orderController.deleteOrder)
 router.get('/getOrders', verifyAccessToken, adminMiddleware, orderController.getOrders)
 router.get('/getOrderById/:id', verifyAccessToken, adminMiddleware, orderController.getOrderById)
+router.get('/getOrderByUser/:email', verifyAccessToken, adminMiddleware, orderController.getOrderByUser)
 
 
 
