@@ -54,6 +54,10 @@ module.exports = {
     if (!order) {
       return next(new Error("Order not found with this Id", 404))
     }
+    res.status(200).json({
+      success: true,
+      order
+    })
   },
 
   getOrders: async (req, res, next) => {
