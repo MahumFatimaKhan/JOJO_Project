@@ -9,7 +9,7 @@ router.post('/newOrder', orderController.newOrder)
 
 // ADMIN ACCESS NEEDED
 router.delete('/deleteOrder/:id', verifyAccessToken, adminMiddleware, orderController.deleteOrder)
-router.get('/getOrders', verifyAccessToken, adminMiddleware, orderController.getOrders)
+router.get('/getAllOrders', verifyAccessToken, adminMiddleware, orderController.getAllOrders)
 router.get('/getOrderById/:id', verifyAccessToken, adminMiddleware, orderController.getOrderById)
 router.get('/getOrderByUser/:email', verifyAccessToken, adminMiddleware, orderController.getOrderByUser)
 

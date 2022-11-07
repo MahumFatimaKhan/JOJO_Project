@@ -84,12 +84,14 @@ module.exports = {
     }
   },
 
-  getOrders: async (req, res, next) => {
+  // ADMIN
+  getAllOrders: async (req, res, next) => {
     Order.find({})
       .exec((error, orders) => {
-        if (error) return res.status(400).json({ error });
+        if (error)
+          return res.status(400).json({ error })
         if (orders) {
-          res.status(200).json({ orders });
+          res.status(200).json({ orders })
         }
       })
   },
