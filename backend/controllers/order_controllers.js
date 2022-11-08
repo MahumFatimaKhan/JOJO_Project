@@ -37,7 +37,7 @@ module.exports = {
         product.stock -= order.quantity;
         await product.save({ validateBeforeSave: false });
         res.status(201).json({
-          message: err
+          message: "Success"
         })
       })
     })
@@ -60,12 +60,38 @@ module.exports = {
     })
   },
 
-  getOrders: async (req, res, next) => {
+  // ADMIN
+  getOrderByUser: async (req, res, next) => {
+    const ordersArray = []
+    const email = req.params.email
+    try {
+      const orders = await Order.find()
+      orders.forEach((order) => {
+        console.log(order.shippingInfo.email)
+        if (order.shippingInfo.email == email)
+          ordersArray.push(order)
+      })
+      res.status(200).json({
+        success: true,
+        orders: ordersArray,
+        //orders
+      })
+    }
+    catch {
+      res.status(401).json({
+        message: "Error"
+      })
+    }
+  },
+
+  // ADMIN
+  getAllOrders: async (req, res, next) => {
     Order.find({})
       .exec((error, orders) => {
-        if (error) return res.status(400).json({ error });
+        if (error)
+          return res.status(400).json({ error })
         if (orders) {
-          res.status(200).json({ orders });
+          res.status(200).json({ orders })
         }
       })
   },
