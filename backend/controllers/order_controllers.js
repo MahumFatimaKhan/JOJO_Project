@@ -96,15 +96,74 @@ module.exports = {
       })
   },
 
-  deleteOrder: async (req, res, next) => {
+  // ADMIN
+  updateOrderStatus: async (req, res, next) => {
     try {
-      await Order.findByIdAndDelete(req.params.id)
+      const status = req.params.status
+      console.log(status)
+      if (status != 'processing' && status != 'shipped' && status != 'packed' && status != 'delivered')
+        res.status(400).json({
+          success: false,
+          message: `${status} cannot be the status`,
+        })
+      const order = await Order.findById(req.params.id)
+      order.orderStatus.Status = status
+      if (status == 'delivered') order.orderStatus.isCompleted = true
+      else order.orderStatus.isCompleted = false
+      await order.save({
+        validateBeforeSave: false
+      })
       res.status(204).json({
         success: true,
+        status: order.orderStatus.Status
+      })
+    } catch (err) {
+      res.status(400).json(
+        {
+          message: "ERROR"
+        }
+      )
+    }
+  },
+
+  // ADMIN
+  updatePaymentStatus: async (req, res, next) => {
+    try {
+      const status = req.params.status
+      if (status != 'pending' && status != 'completed' && status != 'cancelled' && status != 'refund')
+        res.status(404).json({
+          success: false,
+          message: `${status} cannot be the status`,
+        })
+      const order = await Order.findById(req.params.id)
+      order.paymentStatus = status
+      await order.save({
+        validateBeforeSave: false
+      })
+      res.status(204).json({
+        success: true,
+        status: order.orderStatus.Status
+      })
+    } catch (err) {
+      res.status(400).json(
+        {
+          message: "ERROR"
+        }
+      )
+    }
+  },
+
+  // ADMIN 
+  deleteOrder: async (req, res, next) => {
+    try {
+      const order = await Order.findById(req.params.id)
+      await order.remove()
+      res.status(200).json({
+        success: true,
         message: "Order Deleted Successfully",
-      });
+      })
     } catch (error) {
-      res.status(400).json({ message: "Something went wrong" });
+      res.status(400).json({ message: "Order not found." })
     }
   }
 }
