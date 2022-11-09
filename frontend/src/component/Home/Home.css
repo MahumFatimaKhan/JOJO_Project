@@ -1,0 +1,27 @@
+.banner{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("../../images/banner.png");
+    background-size: cover;
+}
+
+.banner > a > button {
+    margin-bottom: 5vmax;
+    cursor: pointer;
+    background-color:  rgba(255, 255, 255, 0);
+    border: 1px solid black;
+    border-radius: 0;
+    padding: 1vmax;
+    transition: all 0.5s;
+    width: 9vmax;
+    font: 500 1vmax "Inria Sans";
+}
+
+.banner > a > button:hover {
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+  }

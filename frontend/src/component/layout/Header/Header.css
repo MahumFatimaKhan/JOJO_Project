@@ -1,0 +1,73 @@
+
+*{
+    font-family: 'Inria Sans', sans-serif;
+    scroll-behavior: smooth;
+}
+ 
+Header{
+    box-sizing: border-box;
+    position: fixed;
+    margin: 0px;
+    padding: 0px;
+    background-color: white;
+    top: 0;
+    left: 0;
+    right:0;
+    width:100%;
+    padding: 5px 10%;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    transition: 0.5s;
+}
+Header .logo>img {
+    height: 100px;
+    width: 100%;
+
+}
+
+Header .nav_links{
+    position: relative;
+    display: flex;
+}
+Header .nav_links li{
+    list-style: none;
+    margin-left: 30px;
+}
+Header .nav_links li a{
+    text-decoration: none;
+    color: black;
+    font-weight: 300;
+}
+Header.sticky{
+    background: white;
+    padding: 10px 100px;
+    box-shadow: 0 5px 20x rgba(0,0, 0, 0.5);
+}
+Header.sticky .logo{
+    color: black;
+}
+Header.sticky .nav_links li a{
+    color: black;
+}
+Header .nav_links li a:hover{
+    color: gray;
+}
+Header .profile >img{
+    height:20px;
+    width: 100%;
+    cursor: pointer;
+}
+Header .search >img{
+    height:20px;
+    width: 100%;
+    cursor: pointer;
+}
+Header .cart >img{
+    
+    height:35px;
+    width: 100%;
+    cursor: pointer;
+}
+
+

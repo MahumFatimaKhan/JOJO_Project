@@ -1,0 +1,106 @@
+Footer {
+  margin-top: 10vmax;
+  padding: 2vmax;
+  background-color: rgb(254, 243, 244);
+  color: black;
+  display: flex;
+  align-items: center;
+
+  flex-flow: row wrap;
+}
+
+.First{
+  margin-top: 2%;
+  margin-left: 2%;
+  margin-right: 8%;
+  flex:1
+}
+
+.First > img{
+  width: 15vmax;
+  border-radius: 60%;
+}
+
+/* 
+.First img{
+  width: 50%;
+} */
+/* .First {
+   width: 50vmax;
+   margin:5vmax;
+}
+
+.Fourth > img {
+  width: 2vmax;
+  margin: 1vmax;
+  cursor: pointer;
+} */
+.Second {
+  width: 20%; 
+  text-align: center;
+  margin-right: 8%;
+  /* flex :1 0px */
+}
+
+.Second > h4 {
+  font-size: 32;
+  font-family: "Inria Sans";
+  margin: 22;
+  color: #000000;
+  text-align: center;
+}
+.Second > p {
+  /* max-width: 200%; */
+  font-size: 22;
+  font-family: "Inria Sans", sans-serif;
+  margin: 22;
+  text-align: center;
+} 
+
+.Third {
+  margin-top: -80px;
+  margin-right: 8%;
+  width: 20%;
+  text-align:center;
+  /* flex :2 0px */
+}
+.Third > h4 {
+  font-size: 32;
+  margin: 22;
+  font-family: "Inria Sans";
+  color: #000000;
+  text-align: center;
+}
+.Third > p {
+  /* max-width: 55%; */
+  font-family: "Inria Sans", sans-serif;
+  margin: 22;
+  font-size: 22;
+  text-align: center;
+} 
+
+.Fourth {
+  margin-top: -85px;
+  /* margin-left: 2%; */
+  margin-right: 4%;
+  width: 10%;
+  text-align: center;
+  /* flex :3 0px */
+}
+
+.Fourth > h4 {
+  font-size: 32;
+  margin: 22;
+  font-family: "Inria Sans";
+  color: #000000;
+  text-align: center;
+}
+
+.Fourth > img{
+  /* border-radius: 20%; */
+  width: 3vmax;
+  margin: 4px;
+/* margin: 1vmax; */
+  cursor: pointer;
+}
+
