@@ -23,6 +23,8 @@ function App() {
   return (
     <Router> 
       <Header/>
+      <Home/>
+      {/* <Route path="/" component={<Home />} /> */}
       {/* <Route exact path="/" component={Home} /> */}
       <Footer/> 
     </Router>

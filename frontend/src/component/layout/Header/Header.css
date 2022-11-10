@@ -5,10 +5,10 @@
 }
  
 Header{
-    box-sizing: border-box;
+    box-sizing:border-box;
     position: fixed;
     margin: 0px;
-    padding: 0px;
+    padding:1rem 7%;
     background-color: white;
     top: 0;
     left: 0;
@@ -26,15 +26,14 @@ Header .logo>img {
 
 }
 
-Header .nav_links{
-    position: relative;
-    display: flex;
-}
+
 Header .nav_links li{
     list-style: none;
     margin-left: 30px;
 }
-Header .nav_links li a{
+Header .nav_links a{
+    list-style: none;
+    margin-left: 30px;
     text-decoration: none;
     color: black;
     font-weight: 300;
@@ -42,32 +41,81 @@ Header .nav_links li a{
 Header.sticky{
     background: white;
     padding: 10px 100px;
-    box-shadow: 0 5px 20x rgba(0,0, 0, 0.5);
+    box-shadow: 0 5px 20x rgba(69, 67, 67, 0.5);
 }
 Header.sticky .logo{
     color: black;
 }
-Header.sticky .nav_links li a{
+Header.sticky .nav_links a{
     color: black;
 }
-Header .nav_links li a:hover{
-    color: gray;
+Header .nav_links a:hover ,a:active{
+    color: black;
+    background-color:rgb(254, 243, 244) ;
 }
-Header .profile >img{
-    height:20px;
-    width: 100%;
+
+Header .icons i, Header .icons a {
+   
     cursor: pointer;
-}
-Header .search >img{
-    height:20px;
-    width: 100%;
-    cursor: pointer;
-}
-Header .cart >img{
+    margin-left: .5rem;
+    height: 2rem;
+    line-height: 2rem;
+    width: 7rem;
+    text-align: center;
+    font-size: 1.5rem;
+    color: black;
     
-    height:35px;
-    width: 100%;
-    cursor: pointer;
 }
+
+Header .icons i:hover, Header .icons a:hover {
+    cursor: pointer;
+    margin-left: .5rem;
+    height: 2rem;
+    line-height: 2rem;
+    width: 7rem;
+    text-align: center;
+    font-size: 1.5rem;
+    color: black;
+    border-radius: 70%;
+    background-color:rgb(254, 243, 244);
+    
+}
+
+Header .icons #menu-bar{
+    display: none;
+}
+
+/* media-queries */
+
+
+@media (max-width:990px){
+    Header{
+        font-size: 70%;
+        padding: 1rem 2rem;
+
+    }
+}
+
+@media (max-width:765px){
+    Header .icons #menu-bar{
+        display: inline-block;
+    }
+    Header .nav_links{
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background-color: white;
+        border-top: .1rem solid rgba(0,0,0,.2);
+        border-bottom: .1rem solid rgba(0,0,0,.2);
+        padding: 1rem;
+    }
+
+    Header .nav_links a{
+        display: block;
+        padding: 1rem;
+        margin: 0.7rem;
+        font-size: 0.9rem;
+    }
+}
+
 
 
