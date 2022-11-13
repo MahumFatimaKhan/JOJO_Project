@@ -1,0 +1,130 @@
+.LoginRegisterContainer {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(254, 243, 244);
+    position: fixed;
+    top: 0%;
+    left: 0;
+    
+  }
+  
+  .LoginRegisterBox {
+    background-color: white;
+    width: 25vw;
+    height: 60vh;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px rgb(161, 159, 159);
+    overflow: hidden;
+    
+  }
+  .Login_Register_Toggle {
+    display: flex;
+    height: 2.5vmax;
+  }
+  .Login_Register_Toggle > p {
+    color: black;
+    font: "Inria Sans";
+    font-weight: 500;
+    font-size: 17px;
+    transition: all 0.5s;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    width: 100%;
+  }
+  .Login_Register_Toggle > p:hover {
+    color: rgb(88, 85, 85);
+  }
+  
+  .LoginRegisterBox > div > button {
+    background-color: black;
+    height: 3px;
+    width: 50%;
+    border: none;
+    transition: all 0.5s;
+  }
+  
+.loginForm , .registerForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  padding: 2vmax;
+  justify-content: space-evenly;
+  height: 70%;
+  transition: all 0.5s;
+}
+
+.registerForm {
+    transform: translateY(-100%) translateX(-100vmax);
+    /* translateX(-100vmax) */
+  }
+  
+.loginForm > div , .registerForm > div {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+
+  .loginForm > div > input, .registerForm > div > input {
+    padding: 1vmax ;
+    padding-right: 2vmax;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    border-radius: 2px;
+    font: 300 1.2vmax "Inria Sans";
+  }
+
+  .loginButton , .registerButton{
+  border: none;
+  background-color:rgb(254, 243, 244);;
+  color: black;
+  font: 300 1.2vmax "Inria Sans";
+  width: 100%;
+  padding: 0.8vmax;
+  cursor: pointer;
+  transition: all 0.1s;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.219);
+}
+
+.loginButton:hover,
+.registerButton:hover {
+  border: solid;
+  border-color: gray;
+}
+
+.shiftLeft {
+    transform: translateX(-100%);
+  }
+  .shiftNeutral {
+    transform: translateX(0%);
+  }
+  
+  .shiftNeutralForm {
+    transform: translateX(0%) translateY(-100%);
+  }
+  
+  .shiftRight {
+    transform: translateX(100%);
+  }
+ 
+/*   
+  .loginForm > a {
+    color: rgba(0, 0, 0, 0.651);
+    text-decoration: none;
+    align-self: flex-end;
+    transition: all 0.5s;
+    font: 500 0.8vmax "Gill Sans";
+  } */
+  
+  /* .loginForm > a:hover {
+    color: black;
+  } */
+  

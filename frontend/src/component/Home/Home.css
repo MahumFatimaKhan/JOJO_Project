@@ -15,7 +15,7 @@
 .Fresh-Arrival{
     text-align: center;
     font-family: "Inria Sans";
-    width: 50vmax;
+    
     padding: 0.5vmax;
     margin: 2vmax auto;
     color: black;
@@ -23,19 +23,35 @@
 .Top-Selling{
     text-align: center;
     font-family: "Inria Sans";
-    width: 50vmax;
     padding: 1vmax;
     margin: 2vmax auto;
     color: black;
 }
 .Categories{
-    text-align: center;
+    text-align:center;
     font-family: "Inria Sans";
-    width: 50vmax;
-    padding: 1vmax;
-    margin: 2vmax auto;
+    width: 99vmax;
+    padding: 0.5vmax;
+    margin: 0.5vmax ;
     color: black;
 }
+
+.container1{
+    display: flex;
+    align-items: center;
+}
+
+
+
+.slider {
+    
+    display:flex;
+    overflow-x: hidden;
+    margin: 2vmax auto;
+    width: 90%;
+    flex-wrap:nowrap;
+    justify-content:center;
+  }
 
 .productcard{
     width: 14vmax;
@@ -43,33 +59,27 @@
     flex-direction: column;
     text-decoration: none;
     color: black;
-    margin: 2vmax;
-}
-
-/* .banner{
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: url("../../images/banner.png");
-    background-size: cover;
-}
-
-.banner > a > button {
-    margin-bottom: 5vmax;
-    cursor: pointer;
-    background-color:  rgba(255, 255, 255, 0);
-    border: 1px solid black;
-    border-radius: 0;
-    padding: 1vmax;
     transition: all 0.5s;
-    width: 9vmax;
-    font: 500 1vmax "Inria Sans";
+    margin: 2vmax;
+    padding: 0.5vmax;
+}
+/* This needs to be changed after img is added */
+.productcard > img{
+    width: 14vmax;
 }
 
-.banner > a > button:hover {
-    background-color: rgba(255, 255, 255, 0);
-    color: white;
-  } */
+.productcard > p{
+    margin: 1vmax 0.5vmax;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+.productcard > span{
+    margin: 0.5vmax;
+    color: rgb(59, 59, 59);
+    font-size: 14px;
+    margin-bottom: 1%;
+}
+.productcard:hover{
+    box-shadow: 0 0 5px rgb(161, 159, 159);
+    transform: translateY(-1vmax);
+}

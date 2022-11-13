@@ -4,6 +4,10 @@ import jojo from "../../../images/jojo.png";
 import { FaBars } from "react-icons/fa";
 import {FiSearch,FiShoppingCart, FiUser} from "react-icons/fi"
 
+// const options = {
+//   ProfileIconUrl:"/login"
+// }
+
 const Header = () => {
   return (
     <header id="Header">
@@ -19,7 +23,7 @@ const Header = () => {
         <div class="icons">
                 <i><FaBars id="menu-bar"/></i>
                 <i><FiSearch id="search-bar"/></i>
-                <a class="user" href='a'><FiUser id="user"/></a>
+                <a class="user" href='/login'><FiUser id="user"/></a>
                 <a class="cart" href="a"><FiShoppingCart id="shopping-cart"/></a>
 
         </div>

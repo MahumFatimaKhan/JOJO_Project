@@ -1,0 +1,38 @@
+.Sidebar {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 0;
+  }
+  
+.Sidebar > a:first-child {
+    padding: 0;
+  }
+.Sidebar > a > img {
+    width: 90%;
+  }
+
+.Sidebar a {
+    text-decoration: none;
+    color:black;
+    font: 200 1rem "Inria Sans";
+    margin-left: 2vmax;
+    padding: 1vmax;
+    transition: all 0.5s;
+  }
+.Sidebar a:hover {
+    color: rgb(97, 95, 94);
+   
+  }
+  
+.Sidebar a > P {
+    display: flex;
+    align-items: center;
+  }
+.Sidebar a > p > svg {
+    margin-right: 0.5rem;
+  }
+  
+.MuiTypography-root {
+    background-color: #fff !important;
+  }

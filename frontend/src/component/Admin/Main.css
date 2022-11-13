@@ -1,0 +1,30 @@
+.main{
+    width: 100w;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    position: absolute;
+}
+
+.mainContainer{
+    border-left: 1px solid black;
+    background-color: rgb(254, 243, 244);
+    /* padding: 3rem 0; */
+    align-items: center;
+}
+
+.mainContainer > h6{
+    font-size: 100px;
+    font-weight: 100;
+    text-align:center;
+margin-top: 0%;
+}
+
+.mainContainer>img{
+    width: 30%;
+    display: block;
+    margin-top: -5%;
+    margin-bottom: 2%;
+    margin-left: auto;
+  margin-right: auto;
+}
