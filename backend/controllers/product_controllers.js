@@ -37,11 +37,12 @@ module.exports = {
       }
     })
   },
-  
+
   //GET ALL PRODUCTS - BASED ON SEARCH FILTER
   getProducts: async (req, res) => {
     const resultPerPage = 12;
     const productCount = await Product.countDocuments();
+    
 
     const apiFeature = new ApiFeatures(Product.find(), req.query)
       .search().pagination(resultPerPage)
@@ -50,17 +51,19 @@ module.exports = {
     res.status(200).json({
       success: true,
       products,
+      productCount
     })
   },
 
 
   //GET ALL PRODUCTS - WILL BE USED BY ADMIN
   getAllProducts: async (req, res) => {
+
     Product.find({})
       .exec((error, products) => {
         if (error) return res.status(400).json({ error });
         if (products) {
-          res.status(200).json({ products });
+          res.status(200).json({ products, productCount });
         }
       })
   },
