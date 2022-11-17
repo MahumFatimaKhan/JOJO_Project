@@ -1,18 +1,19 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import "./LoginRegister.css";
 import Loader from "../layout/Loader/Loader";
-//import { useDispatch, useSelector } from "react-redux";
-//import { clearErrors, login, register } from "../../actions/userAction";
-//import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { clearErrors, login, register } from "../../actions/UserAction";
+import { useAlert } from "react-alert";
 
-export const LoginRegister = ()=>{
-// { history, location }) => {
-//   const dispatch = useDispatch();
-//   const alert = useAlert();
+export const LoginRegister= ({ history, location }) => {
+ // const dispatch = useDispatch();
+  // const alert = useAlert();
 
-//   const { error, loading, isAuthenticated } = useSelector(
-//     (state) => state.user
-//   );
+
+
+  // const { error, loading, isAuthenticated } = useSelector(
+  //   (state) => state.user
+  // );
 
   const loginTab = useRef(null);
   const registerTab = useRef(null);
@@ -32,19 +33,19 @@ export const LoginRegister = ()=>{
  
   const loginSubmit = (e) => {
     console.log("Login Form Submitted")
-    //e.preventDefault();
-   // dispatch(login(loginEmail, loginPassword));
+  //   e.preventDefault();
+  //  dispatch(login(loginEmail, loginPassword));
   };
 
   const registerSubmit = (e) => {
-   // e.preventDefault();
+  //e.preventDefault();
 
     const myForm = new FormData();
 
     myForm.set("name", name);
     myForm.set("email", email);
     myForm.set("password", password);
-   // dispatch(register(myForm));
+  // dispatch(register(myForm));
     console.log("Register Form Submitted")
 
   };
@@ -55,18 +56,19 @@ export const LoginRegister = ()=>{
     
   };
 
-  //const redirect = location.search ? location.search.split("=")[1] : "/account";
+  // const redirect = location.search ? location.search.split("=")[1] : "/account";
 
-//   useEffect(() => {
-//     if (error) {
-//       alert.error(error);
-//       dispatch(clearErrors());
-//     }
+  // useEffect(() => {
+  //   if (error) {
+  //     alert.error(error);
+  //     dispatch(clearErrors());
+  //   }
 
-//     if (isAuthenticated) {
-//       history.push(redirect);
-//     }
-//   }, [dispatch, error, alert, history, isAuthenticated, redirect]);
+
+  //   if (isAuthenticated) {
+  //     history.push(redirect);
+  //   }
+  // }, [dispatch, error, alert, history, isAuthenticated, redirect]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {

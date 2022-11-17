@@ -3,7 +3,7 @@ import './Home.css'
 import Product from './Product.js'
 import { MdChevronLeft, MdChevronRight } from "react-icons/md"
 import { useSelector, useDispatch } from "react-redux"
-import { getProduct } from "../../actions/productAction"
+import { getProduct } from "../../actions/ProductAction"
 
 
 
