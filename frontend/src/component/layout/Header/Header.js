@@ -11,8 +11,8 @@ import {FiSearch,FiShoppingCart, FiUser} from "react-icons/fi"
 const Header = () => {
   return (
     <header id="Header">
-      <div class="logo"><img src={jojo} alt="jojo" /></div> 
-        <nav class="nav_links">
+      <div className="logo"><img src={jojo} alt="jojo" /></div> 
+        <nav className="nav_links">
                 <a href="a">HOME</a>
                 <a href="a">HAIR ACCESSORIES</a>
                 <a href="a">EARRINGS</a>
@@ -20,11 +20,11 @@ const Header = () => {
                 <a href="a">BRACELETS</a>
                 <a href="a">NECKLACES</a>
         </nav>
-        <div class="icons">
+        <div className="icons">
                 <i><FaBars id="menu-bar"/></i>
                 <i><FiSearch id="search-bar"/></i>
-                <a class="user" href='/login'><FiUser id="user"/></a>
-                <a class="cart" href="a"><FiShoppingCart id="shopping-cart"/></a>
+                <a className="user" href='/login'><FiUser id="user"/></a>
+                <a className="cart" href="a"><FiShoppingCart id="shopping-cart"/></a>
 
         </div>
      

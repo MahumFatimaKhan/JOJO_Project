@@ -8,7 +8,7 @@ export const login = (email,password) => async (dispatch)=>{
         const config = {headers:{"Content-Type":"application/json"}};
 
         const{data}=await axios.post(
-            '/api/v1/login',
+            '/auth/login',
             {email,password},
             config
         );
@@ -27,7 +27,7 @@ export const register = (userData) => async (dispatch)=>{
         const config = {headers:{"Content-Type":"multipart/form-data"}};
 
         const{data}=await axios.post(
-            '/api/v1/register',
+            '/auth/register',
             userData,
             config
         );
