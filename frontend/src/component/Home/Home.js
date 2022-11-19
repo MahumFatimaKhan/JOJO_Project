@@ -18,13 +18,13 @@ const product = {
 
 const Home = () => {
 
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-  // const {loading, error, products, } = useSelector(state => state.products)
+  const {loading, error, products, productsCount} = useSelector(state => state.products)
 
-  // useEffect(() => {
-  //   dispatch(getProduct())
-  // }, [dispatch])
+  useEffect(() => {
+    dispatch(getProduct())
+  }, [dispatch])
 
   const slideLeft = () => {
     var slider = document.getElementById('slider');
@@ -39,22 +39,26 @@ const Home = () => {
   return (
 
     <Fragment>
-      <div class="banner"> </div>
-      <div class="Fresh-Arrival">
+      <div className="banner"> </div>
+      <div className="Fresh-Arrival">
         <h2>FRESH ARRIVAL</h2>
         <p>Exclusive range of fresh articles, new products are added almost every other day.</p>
-        <div class="container1">
+        <div className="container1">
           <MdChevronLeft onClick={slideLeft} size={40} />
-          <div class="slider" id="slider">
+          <div className="slider" id="slider">
 
+            {products && products.map(product => (
+               product
+            ))}
+
+            {/* <Product product={product} />
             <Product product={product} />
             <Product product={product} />
             <Product product={product} />
             <Product product={product} />
             <Product product={product} />
             <Product product={product} />
-            <Product product={product} />
-            <Product product={product} />
+            <Product product={product} /> */}
 
           </div>
           <MdChevronRight onClick={slideRight} size={40} />
