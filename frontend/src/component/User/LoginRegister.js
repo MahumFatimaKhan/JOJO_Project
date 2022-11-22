@@ -1,26 +1,47 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import "./LoginRegister.css";
 import Loader from "../layout/Loader/Loader";
-import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, login, register } from "../../actions/UserAction";
-import { useAlert } from "react-alert";
+//import { useDispatch, useSelector } from "react-redux";
+//import { clearErrors, login, register } from "../../actions/userAction";
+//import { useAlert } from "react-alert";
 
-export const LoginRegister= ({ history, location }) => {
-  const dispatch = useDispatch();
-  const alert = useAlert();
-
-
-  const { error, loading, isAuthenticated } = useSelector(
-    (state) => state.user
-  );
+export const LoginRegister = ()=>{
 
   const loginTab = useRef(null);
   const registerTab = useRef(null);
   const switcherTab = useRef(null);
 
+  //login
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
+  const [errMsg, setErrMsg] = useState('');
+  const [success, setSuccess] = useState(false);
+
+
+
+  useEffect(() => {
+      setErrMsg('');
+  }, [loginEmail, loginPassword])
+
+  const loginSubmit = async (e) => {
+      e.preventDefault();
+      
+  let res = await fetch("http://localhost:3000/auth/login", {
+    method: "POST",
+    body: JSON.stringify({
+      email, password
+    }),
+    headers: {
+      "content-Type" : "application/json"
+    },
+    
+  })
+  res = await res.json();
+  console.log(res);
+  };
+
+  //register
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -29,46 +50,58 @@ export const LoginRegister= ({ history, location }) => {
 
   const { name, email, password } = user;
 
- 
-  const loginSubmit = (e) => {
-    console.log("Login Form Submitted")
-    e.preventDefault();
-   dispatch(login(loginEmail, loginPassword));
-  };
-
-  const registerSubmit = (e) => {
-  e.preventDefault();
-
-    const myForm = new FormData();
-
-    myForm.set("name", name);
-    myForm.set("email", email);
-    myForm.set("password", password);
-  dispatch(register(myForm));
-    console.log("Register Form Submitted")
-
-  };
-
   const registerDataChange = (e) => {
    
-      setUser({ ...user, [e.target.name]: e.target.value });
+    setUser({ ...user, [e.target.name]: e.target.value });
+  
+};
+const registerSubmit = async(e) => {
+  e.preventDefault();
+ 
+  const {name, email, password} = user;
+
+  const res = await fetch("http://localhost:3000/auth/register", {
+    method: "POST",
+    body: JSON.stringify({
+      name, email, password
+    }),
+    headers: {
+      "content-Type" : "application/json"
+    },
     
-  };
+  })
+  const data = await res.json();
 
- // const redirect = location.search ? location.search.split("=")[1] : "/account";
+  if(res.status=== 400 ||!data ){
+    window.alert("Invalid Registeration");
+    console.log("Invalid Registeration");
+  }else{
+    window.alert("Registeration Successful");
+    console.log("Registeration Successful");
 
-  useEffect(() => {
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
-    }
-    if (isAuthenticated) {
-      history.push();
-      //history.push(redirect);
-    }
-  }, [dispatch, error, alert, history, isAuthenticated]);
-    // redirect]);
 
+  }
+}
+// { history, location }) => {
+//   const dispatch = useDispatch();
+//   const alert = useAlert();
+
+//   const { error, loading, isAuthenticated } = useSelector(
+//     (state) => state.user
+//   );
+
+  //const redirect = location.search ? location.search.split("=")[1] : "/account";
+
+//   useEffect(() => {
+//     if (error) {
+//       alert.error(error);
+//       dispatch(clearErrors());
+//     }
+
+//     if (isAuthenticated) {
+//       history.push(redirect);
+//     }
+//   }, [dispatch, error, alert, history, isAuthenticated, redirect]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
@@ -88,10 +121,10 @@ export const LoginRegister= ({ history, location }) => {
   };
 
   return (
-    <Fragment>
-      {loading ? (
-        <Loader />
-      ) : (
+    // <Fragment>
+    //   {loading ? (
+    //     <Loader />
+    //   ) : (
         <Fragment>
           <div className="LoginRegisterContainer">
             <div className="LoginRegisterBox">
@@ -111,7 +144,9 @@ export const LoginRegister= ({ history, location }) => {
                 </div>
                 <input type="submit" value="LOGIN" className="loginButton" />
               </form>
-              <form className="registerForm"  ref={registerTab} encType="multipart/form-data" onSubmit={registerSubmit} >
+              
+              
+              <form className="registerForm" method="POST" ref={registerTab} encType="multipart/form-data" onSubmit={registerSubmit} >
                 <div className="registerName">
                   <input type="text"  placeholder="Username" required name="name"  value={name}  onChange={registerDataChange}   />
                 </div>
@@ -126,8 +161,8 @@ export const LoginRegister= ({ history, location }) => {
             </div>
           </div>
         </Fragment>
-      )}
-    </Fragment>
+    //   )}
+    // </Fragment>
   );
 };
 

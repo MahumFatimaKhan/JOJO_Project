@@ -23,7 +23,10 @@ module.exports = {
             const savedUser = await user.save()
             const accessToken = await signAccessToken(savedUser.id)
            // const refreshToken = await signRefreshToken(savedUser.id)
-            res.send('User Created Successfully')
+           return res.status(201).json({
+            success: true,
+            message: "User Created Successfully"
+          })
         //    res.send({accessToken, refreshToken})
         }
         catch(error){
@@ -37,12 +40,33 @@ module.exports = {
     login: async(req,res,next)=>{
         //res.send("login route")
         try{
-            const result = await userSchema.validateAsync(req.body)
-            const user=await User.findOne({email:result.email})
-            if(!user) throw createError.NotFound("User not registered")
+            const { email, password } = req.body;
+
+  // checking if user has given password and email both
+
+  if (!email || !password) {
+    return next(new ErrorHander("Please Enter Email & Password", 400));
+  }
+
+  const user = await User.findOne({ email }).select("+password");
+
+  if (!user) {
+    throw createError.NotFound("User not registered");
+  }
+
+  const isPasswordMatched = await user.isValidPassword(password);
+
+  if (!isPasswordMatched) {
+    throw createError.Unauthorized("Username/Password not valid")
+  }
+
+//  sendToken(user, 200, res);
+            // const result = await userSchema.validateAsync(req.body)
+            // const user=await User.findOne({email:result.email})
+            // if(!user) throw createError.NotFound("User not registered")
     
-            const isMatch = await user.isValidPassword(result.password)
-            if(!isMatch) throw createError.Unauthorized("Username/Password not valid")
+            // const isMatch = await user.isValidPassword(result.password)
+            // if(!isMatch) throw createError.Unauthorized("Username/Password not valid")
     
             const accessToken = await signAccessToken(user.id)
          //   const refreshToken = await signRefreshToken(user.id)

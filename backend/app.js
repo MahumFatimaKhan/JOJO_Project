@@ -3,6 +3,7 @@ const app= express();
 const morgan= require('morgan');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+//require('dotenv').config({"os":false , "fs":false ,"path":false});
 require('./helpers/init_mongodb');
 const {verifyAccessToken}=require('./helpers/jwt_helper')
 
