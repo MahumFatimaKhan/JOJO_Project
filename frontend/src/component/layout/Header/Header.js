@@ -13,12 +13,12 @@ const Header = () => {
     <header id="Header">
       <div className="logo"><img src={jojo} alt="jojo" /></div> 
         <nav className="nav_links">
-                <a href="a">HOME</a>
-                <a href="a">HAIR ACCESSORIES</a>
-                <a href="a">EARRINGS</a>
-                <a href="a">RINGS</a>
-                <a href="a">BRACELETS</a>
-                <a href="a">NECKLACES</a>
+                <a href="/">HOME</a>
+                <a href="/products/">HAIR ACCESSORIES</a>
+                <a href="/earrings">EARRINGS</a>
+                <a href="/rings">RINGS</a>
+                <a href="/bracelets">BRACELETS</a>
+                <a href="/necklaces">NECKLACES</a>
         </nav>
         <div className="icons">
                 <i><FaBars id="menu-bar"/></i>

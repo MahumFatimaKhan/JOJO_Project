@@ -1,0 +1,12 @@
+
+  .AllProducts {
+    padding-top: 150px;
+  }
+  .cards {
+    
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 5vmax;
+    justify-content:space-between;
+    min-height: 30vh;
+  }

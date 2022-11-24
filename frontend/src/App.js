@@ -7,6 +7,7 @@ import Footer from './component/layout/Footer/Footer.js'
 import Home from "./component/Home/Home";
 import { LoginRegister } from './component/User/LoginRegister.js';
 import Main from "./component/Admin/Main.js"
+import Product from './component/Product/Product.js';
 
 
 
@@ -30,6 +31,9 @@ function App() {
       
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginRegister />} />
+        {/* <Route path="/hairaccessories" element={<Product/>} /> */}
+        <Route path="/products/" element={<Product/>}/>
+      
         {/* will have to change route of admin/main to ProtectedRoute later */}
         <Route path="/admin/main" element={<Main />} />
       </Routes>

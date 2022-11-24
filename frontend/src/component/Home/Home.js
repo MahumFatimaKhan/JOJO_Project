@@ -1,6 +1,8 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect,useState } from 'react'
 import './Home.css'
-import Product from './Product.js'
+import {Link} from "react-router-dom"
+import ProductCard from './ProductCard.js'
+import CategoryCard from './CategoryCard.js'
 import {MdChevronLeft,MdChevronRight} from "react-icons/md"
 
 //this is temporary
@@ -11,8 +13,34 @@ const product={
   _id:"thisisid"
 }
 
+// const category={
+//   name:"category 11233",
+//   images:[{url:"https://images.unsplash.com/photo-1547005327-ef75a6961556?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8b2NlYW58ZW58MHwyfDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"}],
+//   _id:"thisisid"
+// }
+
+
+
 
 const Home = () => {
+
+  
+let[categories,setCategories]=useState([])
+
+useEffect(()=>{
+     getCategory();
+},[])
+const getCategory=async()=>{
+let results=await fetch("http://localhost:3000/category/getCategories")
+ results=await results.json();
+ console.log(typeof results)
+ console.log("this is pic "+ results.categoryPicture)
+ 
+ setCategories(results)
+}
+
+console.warn(categories)
+
 
   const slideLeft=()=>{
     var slider=document.getElementById('slider');
@@ -35,14 +63,14 @@ const Home = () => {
         <MdChevronLeft onClick={slideLeft} size={40}/>
         <div class="slider" id="slider">
         
-          <Product product={product}/>
-          <Product product={product}/>
-          <Product product={product}/>
-          <Product product={product}/>
-          <Product product={product}/>
-          <Product product={product}/>
-          <Product product={product}/>
-          <Product product={product}/>
+          <ProductCard product={product}/>
+          <ProductCard product={product}/>
+          <ProductCard product={product}/>
+          <ProductCard product={product}/>
+          <ProductCard product={product}/>
+          <ProductCard product={product}/>
+          <ProductCard product={product}/>
+          <ProductCard product={product}/>
          
         </div>
         <MdChevronRight onClick={slideRight} size={40}/>
@@ -55,14 +83,14 @@ const Home = () => {
         <MdChevronLeft onClick={slideLeft} size={40}/>
         <div class="slider" id="slider">
         
-          <Product product={product}/>
-          <Product product={product}/>
-          <Product product={product}/>
-          <Product product={product}/>
-          <Product product={product}/>
-          <Product product={product}/>
-          <Product product={product}/>
-          <Product product={product}/>
+        <ProductCard product={product}/>
+          <ProductCard product={product}/>
+          <ProductCard product={product}/>
+          <ProductCard product={product}/>
+          <ProductCard product={product}/>
+          <ProductCard product={product}/>
+          <ProductCard product={product}/>
+          <ProductCard product={product}/>
          
         </div>
         <MdChevronRight onClick={slideRight} size={40}/>
@@ -71,12 +99,53 @@ const Home = () => {
         <div class="Categories">
         <h2>CATEGORIES</h2>
         <div class="slider" id="slider">
+
+          {
+            categories.map((categories) => (
+              <CategoryCard key={categories._id} category={categories} />
+            ))
+          }
+
+{/* {
+  Array.from(Object.entries(categories)).map((categories) => (
+    <CategoryCard key={categories._id} category={categories} />
+  ))
+} */}
+          
+{/* 
+        {  categories.map((element,index)=>{
+            <ul key={element}>
+            <li>{index+1}</li>
+            </ul>
+          })
+        } */}
+      
+     
+{/* {Array.from( (Object.entries(JSON.parse(this.categories.json)))).map((element) => (
+                <CategoryCard key={element._id} category={element} />
+              ))} */}
+
+        {/* {Array.isArray(categories)
+        ? categories.map((element) => (
+                <CategoryCard key={element._id} category={element} />
+              )) :null} */}
+{/* 
+              {Object.values(categories).map((element) => (
+                <CategoryCard key={element._id} category={element} />
+              )) } */}
+{/* {  categories.map((element) => 
+<Link className="categorycard" to={element._id}>
+        <img src={element.images[0].url} alt={element.name}/>
+        <p>{element.name}</p>
         
-        <Product product={product}/>
-        <Product product={product}/>
-        <Product product={product}/>
-        <Product product={product}/>
-        <Product product={product}/>
+    </Link>
+)} */}
+        {/* <CategoryCard category={category}/>
+        <CategoryCard category={category}/>
+        <CategoryCard category={category}/>
+        <CategoryCard category={category}/>
+        <CategoryCard category={category}/> */}
+    
     
        
       </div>

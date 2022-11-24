@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 const createError=require('http-errors');
 const { default: slugify } = require('slugify');
@@ -33,11 +34,12 @@ module.exports={
     },
 //GET ALL CATEGORIES
     getCategories: async(req,res)=>{
-      Category.find({})
+      await Category.find({})
       .exec((error,categories)=> {
         if(error) return res.status(400).json({error});
         if(categories){
-          res.status(200).json({categories});
+         res.send(categories)
+        //  res.status(200).json({categories});
         }
       })
     },
