@@ -1,20 +1,27 @@
 const express = require('express');
-const app= express();
-const morgan= require('morgan');
+const app = express();
+const morgan = require('morgan');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 //require('dotenv').config({"os":false , "fs":false ,"path":false});
 require('./helpers/init_mongodb');
-const {verifyAccessToken}=require('./helpers/jwt_helper')
+const { verifyAccessToken } = require('./helpers/jwt_helper')
 
+
+var cors = require('cors');
+app.use(cors({
+    credentials: true,
+    origin: "http://localhost:3001"
+}
+))
 
 //Routes
-const AdminRoutes=require('./routes/admin');
-const productRoutes=require('./routes/product');
-const orderRoutes=require('./routes/order');
-const authRoutes=require('./routes/auth');
-const userRoutes=require('./routes/user');
-const categoryRoutes=require('./routes/category');
+const AdminRoutes = require('./routes/admin');
+const productRoutes = require('./routes/product');
+const orderRoutes = require('./routes/order');
+const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
+const categoryRoutes = require('./routes/category');
 
 
 // app.use((req,res,next)=>{
@@ -24,47 +31,51 @@ const categoryRoutes=require('./routes/category');
 // });
 
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//THIS IS FOR CORS ERRORS WHICH DO NOT SHOW IN POSTMAN BUT WILL SHOW PN WEBSITE
-app.use((req,res,next)=>{
-    res.header('Access-Control-Allow-Origin','*');
-    res.header('Access-Control-Allow-Headers',
-    'Origin, X-requested-With,Content-Type,Accept, Authorization');
-    if(req.method === "OPTIONS"){
-        res.header('Access-Control-Allow-Methods','PUT','POST','PATCH', 'DELETE','GET');
-        return res.status(200).json({});
-    }
-    next();
-});
+// //THIS IS FOR CORS ERRORS WHICH DO NOT SHOW IN POSTMAN BUT WILL SHOW PN WEBSITE
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin : *');
+//     // res.header('Access-Control-Allow-Headers',
+//     //     'Origin, X-requested-With,Content-Type,Accept, Authorization');
+//     res.header('Access-Control-Allow-Credentials : true')
+//     if (req.method === "OPTIONS") {
+//         res.header('Access-Control-Allow-Methods', 'PUT', 'POST', 'PATCH', 'DELETE', 'GET');
+//         return res.status(200).json({});
+//     }
+//     next();
+// });
 
 //Sending to the Routes
-app.use('/admin',AdminRoutes);
-app.use('/product',productRoutes);
+app.use('/admin', AdminRoutes);
+app.use('/product', productRoutes);
 
-app.use('/category',categoryRoutes);
-app.use('/order',orderRoutes);
+app.use('/category', categoryRoutes);
+app.use('/order', orderRoutes);
 app.use('/auth', authRoutes);
-app.use('/user',verifyAccessToken, userRoutes);
+app.use('/user', verifyAccessToken, userRoutes);
 
-app.get('/',verifyAccessToken, async (req,res,next)=>{
-   res.send("Hello!")
+
+
+app.get('/', verifyAccessToken, async (req, res, next) => {
+    res.send("Hello!")
 });
 
-app.use((req,res,next) => {
+
+app.use((req, res, next) => {
     const error = new Error('Not Found');
-    error.status=404;
+    error.status = 404;
     next(error);
 });
 
-app.use((error,req,res,next)=>{
-res.status(error.status || 500);
-res.json({
-    error:{
-    message: error.message
-    }
-});
+app.use((error, req, res, next) => {
+    res.status(error.status || 500);
+    res.json({
+        error: {
+            message: error.message
+        }
+    });
 });
 
 module.exports = app;
