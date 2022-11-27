@@ -1,39 +1,24 @@
 import React, { Fragment, useRef, useState, useEffect, useContext } from "react"
-import AuthContext from "../../AuthProvider";
+import AuthContext from "../../Context/AuthProvider";
 import "./LoginRegister.css";
-import { Navigate, useLocation } from 'react-router-dom'
-import Loader from "../layout/Loader/Loader";
+import { Navigate, useLocation, Link, useNavigate } from 'react-router-dom'
+import UseAuth from "../../Context/UseAuth";
 import axios from 'axios'
-//import { useDispatch, useSelector } from "react-redux";
-//import { clearErrors, login, register } from "../../actions/userAction";
-//import { useAlert } from "react-alert";
 
 const LOGIN_URL = 'http://localhost:3000/auth/login'
 
 export const LoginRegister = () => {
 
   const loginTab = useRef(null);
-
-  const registerTab = useRef(null);
-  const switcherTab = useRef(null);
-  const userRef = useRef()
-  const { setAuth } = useContext(AuthContext)
-
-  const errRef = useRef()
+  const registerTab = useRef(null)
+  const switcherTab = useRef(null)
+  const { setAuth } = UseAuth()
+  const navigate = useNavigate()
+  const location = useLocation()
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  const [errMsg, setErrMsg] = useState('');
-  const [success, setSuccess] = useState(false);
-
-  //////
-  // useEffect(() => {
-  //   userRef.current.focus()
-  // })
-
-
   useEffect(() => {
-    setErrMsg('');
   }, [loginEmail, loginPassword])
 
   const loginSubmit = async (e) => {
@@ -50,26 +35,25 @@ export const LoginRegister = () => {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true
         })
-      console.log(response)
-      // console.log(JSON.stringify(
-      //   response?.data
-      // ))
+      console.log(JSON.stringify(
+        response?.data
+      ))
       const accessToken = response.data.accessToken
       const role = response.data.role
       setAuth({ loginEmail, loginPassword, role, accessToken })
       setLoginEmail('')
-      setLoginPassword('')
-      setSuccess(true)
+      setLoginPassword('');
+      if (role == 'user') navigate("/", { replace: true })
+      if (role == 'admin') navigate("/admin", { replace: true })
     } catch (err) {
-      console.log(err)
       if (!err?.response) {
-        setErrMsg('No Server Response');
+        window.alert('No Server Response');
       } else if (err.response?.status === 400) {
-        setErrMsg('Missing Username or Password');
+        window.alert('Missing Username or Password');
       } else if (err.response?.status === 401) {
-        setErrMsg('Unauthorized');
+        window.alert('Unauthorized');
       } else {
-        setErrMsg('Login Failed');
+        window.alert('Login Failed');
       }
     }
   };
@@ -112,26 +96,6 @@ export const LoginRegister = () => {
       console.log("Registeration Successful");
     }
   }
-  // { history, location }) => {
-  //   const dispatch = useDispatch();
-  //   const alert = useAlert();
-
-  //   const { error, loading, isAuthenticated } = useSelector(
-  //     (state) => state.user
-  //   );
-
-  //const redirect = location.search ? location.search.split("=")[1] : "/account";
-
-  //   useEffect(() => {
-  //     if (error) {
-  //       alert.error(error);
-  //       dispatch(clearErrors());
-  //     }
-
-  //     if (isAuthenticated) {
-  //       history.push(redirect);
-  //     }
-  //   }, [dispatch, error, alert, history, isAuthenticated, redirect]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
@@ -150,13 +114,9 @@ export const LoginRegister = () => {
     }
   };
 
-  const location = useLocation()
+
 
   return (
-    // <Fragment>
-    //   {loading ? (
-    //     <Loader />
-    //   ) : (
     <Fragment>
       <div className="LoginRegisterContainer">
         <div className="LoginRegisterBox">
@@ -167,41 +127,29 @@ export const LoginRegister = () => {
             </div>
             <button ref={switcherTab}></button>
           </div>
-          {success
-            // && AuthContext.auth?.role == 'user' 
-            ?
-            (
-              // <h1> voijrgofejrojmg </h1>
-              <Navigate to="/" state={{ from: location }} replace />
-            ) : (
-              <>
-                <p ref={errRef}> {errMsg} </p>
-                <>
-                  <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
-                    <div className="loginEmail">
-                      <input type="email" placeholder="Email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} />
-                    </div>
-                    <div className="loginPassword">
-                      <input type="password" placeholder="Password" required value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
-                    </div>
-                    <input type="submit" value="LOGIN" className="loginButton" />
-                  </form><form className="registerForm" method="POST" ref={registerTab} encType="multipart/form-data" onSubmit={registerSubmit}>
-                    <div className="registerName">
-                      <input type="text" placeholder="Username" required name="name" value={name} onChange={registerDataChange} />
-                    </div>
-                    <div className="registerEmail">
-                      <input type="email" placeholder="Email" required name="email" value={email} onChange={registerDataChange} />
-                    </div>
-                    <div className="registerPassword">
-                      <input type="password" placeholder="Password" required name="password" value={password} onChange={registerDataChange} />
-                    </div>
-                    <input type="submit" value="REGISTER" className="registerButton" />
-                  </form></></>)}
+          <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
+            <div className="loginEmail">
+              <input type="email" placeholder="Email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} />
+            </div>
+            <div className="loginPassword">
+              <input type="password" placeholder="Password" required value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
+            </div>
+            <input type="submit" value="LOGIN" className="loginButton" />
+          </form><form className="registerForm" method="POST" ref={registerTab} encType="multipart/form-data" onSubmit={registerSubmit}>
+            <div className="registerName">
+              <input type="text" placeholder="Username" required name="name" value={name} onChange={registerDataChange} />
+            </div>
+            <div className="registerEmail">
+              <input type="email" placeholder="Email" required name="email" value={email} onChange={registerDataChange} />
+            </div>
+            <div className="registerPassword">
+              <input type="password" placeholder="Password" required name="password" value={password} onChange={registerDataChange} />
+            </div>
+            <input type="submit" value="REGISTER" className="registerButton" />
+          </form>
         </div>
       </div>
     </Fragment>
-    //   )}
-    // </Fragment>
   );
 };
 
