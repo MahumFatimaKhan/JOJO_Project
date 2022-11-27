@@ -1,6 +1,7 @@
 import React, { Fragment, useRef, useState, useEffect, useContext } from "react"
 import AuthContext from "../../AuthProvider";
 import "./LoginRegister.css";
+import { Navigate, useLocation } from 'react-router-dom'
 import Loader from "../layout/Loader/Loader";
 import axios from 'axios'
 //import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +12,6 @@ const LOGIN_URL = 'http://localhost:3000/auth/login'
 
 export const LoginRegister = () => {
 
-  //////
   const loginTab = useRef(null);
 
   const registerTab = useRef(null);
@@ -19,15 +19,10 @@ export const LoginRegister = () => {
   const userRef = useRef()
   const { setAuth } = useContext(AuthContext)
 
-  //////
   const errRef = useRef()
-
-
-  //login
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  ///////
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
 
@@ -55,7 +50,7 @@ export const LoginRegister = () => {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true
         })
-        console.log(response)
+      console.log(response)
       // console.log(JSON.stringify(
       //   response?.data
       // ))
@@ -155,6 +150,8 @@ export const LoginRegister = () => {
     }
   };
 
+  const location = useLocation()
+
   return (
     // <Fragment>
     //   {loading ? (
@@ -170,33 +167,36 @@ export const LoginRegister = () => {
             </div>
             <button ref={switcherTab}></button>
           </div>
-          {success ? (
-            <section>
-              <h1> You are logged in </h1>
-            </section>) : (
-            <>
-              <p ref={errRef}> {errMsg} </p>
+          {success
+            // && AuthContext.auth?.role == 'user' 
+            ?
+            (
+              // <h1> voijrgofejrojmg </h1>
+              <Navigate to="/" state={{ from: location }} replace />
+            ) : (
               <>
-                <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
-                  <div className="loginEmail">
-                    <input type="email" placeholder="Email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} />
-                  </div>
-                  <div className="loginPassword">
-                    <input type="password" placeholder="Password" required value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
-                  </div>
-                  <input type="submit" value="LOGIN" className="loginButton" />
-                </form><form className="registerForm" method="POST" ref={registerTab} encType="multipart/form-data" onSubmit={registerSubmit}>
-                  <div className="registerName">
-                    <input type="text" placeholder="Username" required name="name" value={name} onChange={registerDataChange} />
-                  </div>
-                  <div className="registerEmail">
-                    <input type="email" placeholder="Email" required name="email" value={email} onChange={registerDataChange} />
-                  </div>
-                  <div className="registerPassword">
-                    <input type="password" placeholder="Password" required name="password" value={password} onChange={registerDataChange} />
-                  </div>
-                  <input type="submit" value="REGISTER" className="registerButton" />
-                </form></></>)}
+                <p ref={errRef}> {errMsg} </p>
+                <>
+                  <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
+                    <div className="loginEmail">
+                      <input type="email" placeholder="Email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} />
+                    </div>
+                    <div className="loginPassword">
+                      <input type="password" placeholder="Password" required value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
+                    </div>
+                    <input type="submit" value="LOGIN" className="loginButton" />
+                  </form><form className="registerForm" method="POST" ref={registerTab} encType="multipart/form-data" onSubmit={registerSubmit}>
+                    <div className="registerName">
+                      <input type="text" placeholder="Username" required name="name" value={name} onChange={registerDataChange} />
+                    </div>
+                    <div className="registerEmail">
+                      <input type="email" placeholder="Email" required name="email" value={email} onChange={registerDataChange} />
+                    </div>
+                    <div className="registerPassword">
+                      <input type="password" placeholder="Password" required name="password" value={password} onChange={registerDataChange} />
+                    </div>
+                    <input type="submit" value="REGISTER" className="registerButton" />
+                  </form></></>)}
         </div>
       </div>
     </Fragment>
