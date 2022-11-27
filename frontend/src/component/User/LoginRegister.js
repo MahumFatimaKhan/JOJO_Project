@@ -43,6 +43,7 @@ export const LoginRegister = () => {
       setAuth({ loginEmail, loginPassword, role, accessToken })
       setLoginEmail('')
       setLoginPassword('');
+      
       if (role == 'user') navigate("/", { replace: true })
       if (role == 'admin') navigate("/admin", { replace: true })
     } catch (err) {

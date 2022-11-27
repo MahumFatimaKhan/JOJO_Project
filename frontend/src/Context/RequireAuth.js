@@ -1,12 +1,14 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom"
 import UseAuth from "./UseAuth"
 
-const RequireAuth = () => {
+const RequireAuth = (isAdmin) => {
     const { auth } = UseAuth()
     const location = useLocation()
+    console.log(auth.role)
 
     return (
-        auth?.user ?
+        auth?.role == 'admin'
+            ?
             <Outlet /> :
             <Navigate to="/login" state={{ from: location }} replace />
     )
