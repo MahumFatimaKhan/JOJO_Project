@@ -71,17 +71,24 @@ module.exports = {
 
   //GET PRODUCT DETAIL BY ID
   getProductDetails: async (req, res, next) => {
-    const product = await Product.findById(req.params.id);
+    try {
+      const product = await Product.findById(req.params.id);
 
-    if (!product) {
-      return next(new ErrorHander("Product not found", 404));
+      if (!product) {
+        return next(new ErrorHander("Product not found", 404));
+      }
+
+      res.status(200).send(product)
+    } catch (error) {
+      res.status(400).json({ message: "Something went wrong" });
     }
 
-    res.status(200).json({
-      success: true,
-      product,
 
-    });
+    // res.status(200).json({
+    //   success: true,
+    //   product,
+
+    // });
   },
   //UPDATE PRODUCT ADMIN ONLY
   // updateProduct: async(req,res,send){
@@ -90,38 +97,25 @@ module.exports = {
 
   //GET PRODUCT BY CATEGORY
   getProductByCategory: async (req, res, next) => {
+    try{
     const findCategory = req.params.categoryID
     const product = await Product.find({ category: findCategory })
     if (!product) {
       return next(new ErrorHander("Something went wrong", 404));
     }
 
-    res.status(200).json({
-      success: true,
-      product,
+    res.status(200).send(product)
+  } catch(error) {
+    res.status(400).json({ message: "Something went wrong" });
+  }
 
-    });
 
-    //     const requestperpage= 8;
-    //     const productCount=await Product.countDocuments();
-    //     const { slug } = req.params;
-    //   Category.findOne({ slug: slug })
-    //     .select("_id type")
-    //     .exec((error, category) => {
-    //       if (error) {
-    //         return res.status(400).json({ error });
-    //       }
-    //       if (category) {
-    //         Product.find({ category: category._id }).exec((error, products) => {
-    //           if (error) {
-    //             return res.status(400).json({ error });
-    //           }
+  // res.status(200).json({
+  //   success: true,
+  //   product,
 
-    // })
-    // }
-    //     })
-
-  },
+  // });
+},
 
   //UPDATE PRODUCT but does not upload picture- ADMIN ONLY
   updateProduct: async (req, res, next) => {
@@ -144,18 +138,18 @@ module.exports = {
     })
   },
 
-  //DELETE ONE PRODUCT USING ID - ADMIN ONLY
-  deleteProduct: async (req, res, next) => {
-    try {
-      await Product.findByIdAndDelete(req.params.id)
-      res.status(204).json({
-        success: true,
-        message: "Product Deleted Successfully",
-      });
-    } catch (error) {
-      res.status(400).json({ message: "Something went wrong" });
-    }
-  },
+    //DELETE ONE PRODUCT USING ID - ADMIN ONLY
+    deleteProduct: async (req, res, next) => {
+      try {
+        await Product.findByIdAndDelete(req.params.id)
+        res.status(204).json({
+          success: true,
+          message: "Product Deleted Successfully",
+        });
+      } catch (error) {
+        res.status(400).json({ message: "Something went wrong" });
+      }
+    },
 
 }
 

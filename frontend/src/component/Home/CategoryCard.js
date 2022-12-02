@@ -1,18 +1,17 @@
 import React from 'react'
-import {Link} from "react-router-dom"
-import { generatePublicUrl } from '../../urlConfig'
+import { Link } from "react-router-dom"
 
-const CategoryCard = ({category}) => {
+
+const CategoryCard = ({ category }) => {
   return (
-    
-    <Link className="categorycard" to={category._id}>
-        <img src={generatePublicUrl(category.categoryPicture)} />
-        {/*  alt={category.name} */}
-        <p>{category.name}</p>
-        
+
+    <Link className="categorycard" to={"/category/" + category._id}>
+      <img src={category.categoryPicture} alt={category.name} />
+      {/*  alt={category.name} */}
+      <p>{category.name}</p>
+
     </Link>
   )
 }
-
 
 export default CategoryCard

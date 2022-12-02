@@ -1,4 +1,4 @@
-.banner{
+.banner {
     margin: 8.9vmax auto 1vmax;
     width: 100%;
     min-height: 65vmin;
@@ -6,37 +6,39 @@
     flex-direction: column;
     text-align: right;
     justify-content: center;
-    align-items:flex-end;
-    color:black;
+    align-items: flex-end;
+    color: black;
     background: url("../../images/banner.png");
     background-size: cover;
 }
 
-.Fresh-Arrival{
+.Fresh-Arrival {
     text-align: center;
     font-family: "Inria Sans";
-    
+
     padding: 0.5vmax;
     margin: 2vmax auto;
     color: black;
 }
-.Top-Selling{
+
+.Top-Selling {
     text-align: center;
     font-family: "Inria Sans";
     padding: 1vmax;
     margin: 2vmax auto;
     color: black;
 }
-.Categories{
-    text-align:center;
+
+.Categories {
+    text-align: center;
     font-family: "Inria Sans";
     width: 99vmax;
     padding: 0.5vmax;
-    margin: 0.5vmax ;
+    margin: 0.5vmax;
     color: black;
 }
 
-.container1{
+.container1 {
     display: flex;
     align-items: center;
 }
@@ -44,16 +46,16 @@
 
 
 .slider {
-    
-    display:flex;
+
+    display: flex;
     overflow-x: hidden;
     margin: 2vmax auto;
     width: 90%;
-    flex-wrap:nowrap;
-    justify-content:center;
-  }
+    flex-wrap: nowrap;
+    justify-content: center;
+}
 
-.productcard{
+.productcard {
     width: 14vmax;
     display: flex;
     flex-direction: column;
@@ -63,29 +65,32 @@
     margin: 2vmax;
     padding: 0.5vmax;
 }
+
 /* This needs to be changed after img is added */
-.productcard > img{
+.productcard>img {
     width: 14vmax;
 }
 
-.productcard > p{
+.productcard>p {
     margin: 1vmax 0.5vmax;
     font-size: 18px;
     margin-bottom: 0;
 }
-.productcard > span{
+
+.productcard>span {
     margin: 0.5vmax;
     color: rgb(59, 59, 59);
     font-size: 14px;
     margin-bottom: 1%;
 }
-.productcard:hover{
+
+.productcard:hover {
     box-shadow: 0 0 5px rgb(161, 159, 159);
     transform: translateY(-1vmax);
 }
 
 
-.categorycard{
+.categorycard {
     width: 14vmax;
     display: flex;
     flex-direction: column;
@@ -95,18 +100,19 @@
     margin: 2vmax;
     padding: 0.5vmax;
 }
+
 /* This needs to be changed after img is added */
-.categorycard > img{
+.categorycard>img {
     width: 14vmax;
 }
 
-.categorycard > p{
+.categorycard>p {
     margin: 1vmax 0.5vmax;
     font-size: 18px;
     margin-bottom: 0;
 }
 
-.categorycard:hover{
+.categorycard:hover {
     box-shadow: 0 0 5px rgb(161, 159, 159);
     transform: translateY(-1vmax);
 }

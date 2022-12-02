@@ -81,6 +81,17 @@ Header .icons i:hover, Header .icons a:hover {
     
 }
 
+Header .icons .cart > span{
+    background-color: rgb(194, 32, 32);
+    border-radius: 20px;
+    color: white;
+    position: absolute;
+    top: 20px;
+    right: 120px;
+    padding: 0px 5px 1px;
+    font-size: 10px;
+}
+
 Header .icons #menu-bar{
     display: none;
 }

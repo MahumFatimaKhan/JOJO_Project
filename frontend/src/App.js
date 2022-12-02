@@ -10,6 +10,11 @@ import RequireAuth from './Context/RequireAuth.js'
 import Main from './component/Admin/Main'
 import ProductList from './component/Admin/ProductList'
 import CreateProduct from './component/Admin/CreateProduct.js'
+import ProductDetails from './component/Product/ProductDetails.js';
+import Cart from './component/Cart/Cart.js';
+import ShippingDetails from './component/Cart/ShippingDetail.js';
+import ConfirmOrder from './component/Cart/ConfirmOrder.js';
+import Product from './component/Product/Product'
 
 
 
@@ -31,6 +36,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginRegister />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/shippingDetail" element={<ShippingDetails />} />
+        <Route path="/ConfirmOrder" element={<ConfirmOrder />} />
+        <Route path="/category/:id" element={<Product />} />
+        {/* <Route exact path="/product/:id" component={ProductDetails} /> */}
+        <Route path="/category/products/:id" element={<ProductDetails />} />
+
         <Route element={<RequireAuth />} >
           <Route path="/admin/main" element={<Main />} />
           <Route path="/admin/products" element={<ProductList />} />

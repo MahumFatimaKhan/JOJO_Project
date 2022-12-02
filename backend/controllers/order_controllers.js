@@ -31,7 +31,7 @@ module.exports = {
 
     order.save().then(result => {
       result.orderDetails.forEach(async (order) => {
-        const product = await Product.findById(order.productID);
+        const product = await Product.findById(order._id);
         product.stock -= order.quantity;
         await product.save({ validateBeforeSave: false });
         res.status(201).json({

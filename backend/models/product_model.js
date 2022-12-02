@@ -32,7 +32,7 @@ const productSchema = new mongoose.Schema(
         //         }
         //     }
         // ],
-        productPictureURLs: {
+        productPictures: {
             type: String
         },
         stock: {

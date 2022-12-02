@@ -1,0 +1,79 @@
+.shippingContainer {
+    padding-top: 100px;
+    width: 100vw;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .shippingBox {
+    background-color: white;
+    width: 25vw;
+    height: 90vh;
+    box-sizing: border-box;
+  }
+  
+  .shippingHeading {
+    text-align: center;
+    color:black;
+    font: 200 2vmax "Inria Sans";
+    padding: 1.3vmax;
+    width: 100%;
+    margin: auto;
+  }
+  
+  .shippingForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    /* padding: vmax; */
+    justify-content: space-evenly;
+    height: 70%;
+    transition: all 0.5s;
+  }
+  
+  .shippingForm > div {
+    display: flex;
+    width: 150%;
+    align-items: center;
+  }
+  
+  .shippingForm > div > input,
+  .shippingForm > div > select {
+    padding: 1vmax 4vmax;
+    padding-right: 1vmax;
+    width: 150%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    
+    font: 300 0.9vmax ;
+    outline: none;
+  }
+  
+  .shippingForm > div > svg {
+    position: absolute;
+    transform: translateX(1vmax);
+    font-size: 1.6vmax;
+    color: rgba(0, 0, 0, 0.623);
+  }
+  
+  .shippingBtn {
+    
+    border: solid;
+    background-color: rgb(254, 243, 244);
+    color:black;
+    font: 300 5vmax ;
+    width: 100%;
+    padding: 1vmax;
+    cursor: pointer;
+    transition: all 0.5s;
+    outline: none;
+    /* margin: 2vmax; */
+  }
+  
+  .shippingBtn:hover {
+    background-color: rgb(217, 217, 217);
+  }
