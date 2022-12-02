@@ -13,10 +13,10 @@
 }
 
 #productListHeading {
-    font: 400 2rem "Roboto";
+    font: 100 2rem ;
     padding: 0.5vmax;
     box-sizing: border-box;
-    color: rgba(0, 0, 0, 0.637);
+    color: black;
     transition: all 0.5s;
     margin: 2rem;
     text-align: center;

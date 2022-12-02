@@ -94,7 +94,7 @@ const UpdateProduct = () => {
                 <div className='newProductContainer'>
                     <form className="createProductForm" onSubmit={updateProduct}>
                         <h1>
-                            Create Product
+                            Update Product
                         </h1>
                         <div>
                             <input

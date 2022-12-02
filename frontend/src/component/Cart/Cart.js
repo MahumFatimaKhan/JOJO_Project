@@ -29,7 +29,7 @@ export const addToCartHandler = (product, quantity) => {
 
   } else {
     toast.error(`${newProduct.name} is already in cart`)
-    return;
+    return ;
   }
 }
 
@@ -77,6 +77,7 @@ export const Cart = ({ cart }) => {
 
 
   return (
+    
     <Fragment>
       {cartItems.length === 0 ? (
         <div className="emptyCart">
@@ -86,8 +87,11 @@ export const Cart = ({ cart }) => {
           <Link to="/">View Products</Link>
         </div>
       ) : (
+        
         <Fragment>
+          
           <div className="cartPage">
+        
             <div className="cartHeader">
               <p>Product</p>
               <p>Quantity</p>

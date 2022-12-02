@@ -75,7 +75,7 @@ export const ProductDetails = (props) => {
 
     return(
       <Fragment>
-{/* <Toaster/> */}
+<Toaster/>
   
       <div className="ProductDetails">
       

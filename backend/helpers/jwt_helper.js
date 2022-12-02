@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const createError = require('http-errors')
 
 const User = require('../models/user_model');
-const { resolveObjMapThunk } = require('graphql');
 
 module.exports = {
     signAccessToken: (userid) => {
