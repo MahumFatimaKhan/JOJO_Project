@@ -11,7 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
+    "@material-ui/data-grid": "^4.0.0-alpha.37",
     "@material-ui/lab": "^4.0.0-alpha.61",
+    "@mui/x-data-grid": "^5.17.13",
+    "@syncfusion/ej2-react-navigations": "^20.3.58",
     "@types/cors": "^2.8.12",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
@@ -24,6 +27,7 @@
     "react-admin": "^4.5.2",
     "react-alert": "^7.0.3",
     "react-alert-template-basic": "^1.0.2",
+    "react-treeview": "^0.4.7",
     "shortid": "^2.2.16",
     "slugify": "^1.6.5",
     "webfontloader": "^1.6.28"

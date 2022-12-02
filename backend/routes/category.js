@@ -20,6 +20,7 @@ const upload = multer({ storage });
 
 //ADMIN ONLY
 router.post('/create',verifyAccessToken,adminMiddleware,upload.single("categoryPicture"), CategoryController.create);
+router.get('/searchCategory/:name',verifyAccessToken,adminMiddleware, CategoryController.searchCategory);
 router.delete('/deleteCategories/:id', verifyAccessToken, adminMiddleware,CategoryController.deleteCategories)
 //NEED TO CHECK UPDATE CATEGORY ON POSTMAN FIRST
 //router.put('/update',verifyAccessToken,adminMiddleware,upload.single("categoryPicture"), CategoryController.updateCategories);

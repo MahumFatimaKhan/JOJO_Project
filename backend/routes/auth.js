@@ -11,6 +11,8 @@ router.post('/register', AuthController.register);
 
 router.post('/login', AuthController.login);
 
+//router.post('/refreshToken', AuthController.refreshToken)
+
 // router.post('/refresh-token',async(req,res,next)=>{
 //     try {
 //         const { refreshToken } = req.body

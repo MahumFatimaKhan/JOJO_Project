@@ -23,29 +23,9 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const categoryRoutes = require('./routes/category');
 
-
-// app.use((req,res,next)=>{
-//     res.status(200).json({
-//         message:"Working!!"
-//     });
-// });
-
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-// //THIS IS FOR CORS ERRORS WHICH DO NOT SHOW IN POSTMAN BUT WILL SHOW PN WEBSITE
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin : *');
-//     // res.header('Access-Control-Allow-Headers',
-//     //     'Origin, X-requested-With,Content-Type,Accept, Authorization');
-//     res.header('Access-Control-Allow-Credentials : true')
-//     if (req.method === "OPTIONS") {
-//         res.header('Access-Control-Allow-Methods', 'PUT', 'POST', 'PATCH', 'DELETE', 'GET');
-//         return res.status(200).json({});
-//     }
-//     next();
-// });
 
 //Sending to the Routes
 app.use('/admin', AdminRoutes);

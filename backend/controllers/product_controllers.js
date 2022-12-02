@@ -12,21 +12,21 @@ module.exports = {
 
   // CREATE PRODUCT ADMIN ONLY
   createProduct: (req, res, next) => {
-    const { name, price, description, stock, color, category } = req.body;
+    const { name, price, description, stock, color, category, productPictureURLs } = req.body;
 
-    let productPictures = [];
+    // let productPictures = [];
 
-    if (req.files.length > 0) {
-      //you can add here "/public/" before req.files
-      productPictures = req.files.map(file => {
-        return { img: file.filename }
-      });
-    }
+    // if (req.files.length > 0) {
+    //   //you can add here "/public/" before req.files
+    //   productPictures = req.files.map(file => {
+    //     return { img: file.filename }
+    //   });
+    // }
 
     const product = new Product({
       name: name,
       slug: slugify(name),
-      price, description, productPictures, stock, color, category
+      price, description, stock, color, category, productPictureURLs
     })
     product.save((error, product) => {
       if (error) {
@@ -42,7 +42,7 @@ module.exports = {
   getProducts: async (req, res) => {
     const resultPerPage = 12;
     const productCount = await Product.countDocuments();
-    
+
 
     const apiFeature = new ApiFeatures(Product.find(), req.query)
       .search().pagination(resultPerPage)
@@ -51,7 +51,7 @@ module.exports = {
     res.status(200).json({
       success: true,
       products,
-      productCount
+
     })
   },
 
@@ -62,8 +62,9 @@ module.exports = {
     Product.find({})
       .exec((error, products) => {
         if (error) return res.status(400).json({ error });
+
         if (products) {
-          res.status(200).json({ products, productCount });
+          res.status(200).send(products);
         }
       })
   },
@@ -79,7 +80,7 @@ module.exports = {
     res.status(200).json({
       success: true,
       product,
-      productCount
+
     });
   },
   //UPDATE PRODUCT ADMIN ONLY

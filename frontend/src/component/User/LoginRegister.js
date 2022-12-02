@@ -1,7 +1,6 @@
-import React, { Fragment, useRef, useState, useEffect, useContext } from "react"
-import AuthContext from "../../Context/AuthProvider";
+import React, { Fragment, useRef, useState, useEffect } from "react"
 import "./LoginRegister.css";
-import { Navigate, useLocation, Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import UseAuth from "../../Context/UseAuth";
 import axios from 'axios'
 
@@ -14,7 +13,6 @@ export const LoginRegister = () => {
   const switcherTab = useRef(null)
   const { setAuth } = UseAuth()
   const navigate = useNavigate()
-  const location = useLocation()
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
@@ -23,7 +21,6 @@ export const LoginRegister = () => {
 
   const loginSubmit = async (e) => {
     e.preventDefault();
-    console.log(loginEmail, loginPassword)
     try {
       const response = await axios.post(
         LOGIN_URL,
@@ -35,17 +32,14 @@ export const LoginRegister = () => {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true
         })
-      console.log(JSON.stringify(
-        response?.data
-      ))
       const accessToken = response.data.accessToken
       const role = response.data.role
       setAuth({ loginEmail, loginPassword, role, accessToken })
       setLoginEmail('')
       setLoginPassword('');
-      
       if (role == 'user') navigate("/", { replace: true })
-      if (role == 'admin') navigate("/admin", { replace: true })
+      if (role == 'admin')
+        navigate("/admin/main", { replace: true })
     } catch (err) {
       if (!err?.response) {
         window.alert('No Server Response');
@@ -74,9 +68,9 @@ export const LoginRegister = () => {
 
   };
   const registerSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const { name, email, password } = user;
+    const { name, email, password } = user
 
     const res = await fetch("http://localhost:3000/auth/register", {
       method: "POST",
@@ -87,14 +81,13 @@ export const LoginRegister = () => {
         "content-Type": "application/json"
       },
     })
+
     const data = await res.json();
 
     if (res.status === 400 || !data) {
-      window.alert("Invalid Registeration");
-      console.log("Invalid Registeration");
+      window.alert("Invalid Registeration")
     } else {
-      window.alert("Registeration Successful");
-      console.log("Registeration Successful");
+      window.alert("Registeration Successful")
     }
   }
 
@@ -114,8 +107,6 @@ export const LoginRegister = () => {
       loginTab.current.classList.add("shiftLeft");
     }
   };
-
-
 
   return (
     <Fragment>
@@ -151,7 +142,7 @@ export const LoginRegister = () => {
         </div>
       </div>
     </Fragment>
-  );
-};
+  )
+}
 
 export default LoginRegister;

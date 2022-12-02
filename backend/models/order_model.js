@@ -8,7 +8,8 @@ const orderSchema = new mongoose.Schema({
     country: { type: String, required: true },
     city: { type: String, required: true },
     phone: { type: String, required: true },
-    email: { type: String, required: true }
+    email: { type: String, required: true },
+    name: {type: String, required: true}
   },
   orderDetails: [{
     // name: {type: String, required: true},
@@ -56,11 +57,7 @@ const orderSchema = new mongoose.Schema({
     required: true,
     default: 0,
   },
-  salesTax: {
-    type: Number,
-    required: true,
-    default: 0,
-  },
+ 
   shippingPrice: {
     type: Number,
     required: true,

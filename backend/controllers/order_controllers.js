@@ -14,7 +14,6 @@ module.exports = {
       paymentStatus,
       orderStatus,
       subTotal,
-      salesTax,
       shippingPrice,
       totalPrice,
     } = req.body
@@ -25,7 +24,6 @@ module.exports = {
       paymentStatus,
       orderStatus,
       subTotal,
-      salesTax,
       shippingPrice,
       totalPrice,
       orderDate: Date.now()

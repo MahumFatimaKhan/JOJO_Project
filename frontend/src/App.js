@@ -6,8 +6,10 @@ import React from 'react'
 import Footer from './component/layout/Footer/Footer.js'
 import Home from "./component/Home/Home"
 import { LoginRegister } from './component/User/LoginRegister.js'
-import Main from "./component/Admin/Main.js"
 import RequireAuth from './Context/RequireAuth.js'
+import Main from './component/Admin/Main'
+import ProductList from './component/Admin/ProductList'
+import CreateProduct from './component/Admin/CreateProduct.js'
 
 
 
@@ -30,7 +32,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginRegister />} />
         <Route element={<RequireAuth />} >
-          <Route path="/admin" element={<Main />} />
+          <Route path="/admin/main" element={<Main />} />
+          <Route path="/admin/products" element={<ProductList />} />
+          <Route path="/admin/addproducts" element={<CreateProduct />} />
         </Route>
       </Routes>
       <Footer />
