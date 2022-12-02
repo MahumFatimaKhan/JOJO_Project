@@ -8,6 +8,10 @@
     height: 100vh;
 }
 
+.tableHead {
+    background-Color: rgb(254, 243, 244);
+}
+
 #productListHeading {
     font: 400 2rem "Roboto";
     padding: 0.5vmax;

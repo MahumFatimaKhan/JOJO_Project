@@ -1,26 +1,24 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import Sidebar from './Sidebar'
-import './CreateProduct.css'
 import axios from 'axios'
 import UseAuth from '../../Context/UseAuth'
+import Sidebar from './Sidebar'
+import { useNavigate } from 'react-router-dom'
 
-// import AccountTreeIcon from "@material-ui/icons"
-//import SpellcheckIcon from "@material-ui/icons/Spellcheck";
+const UpdateProduct = () => {
 
-const CreateProduct = () => {
-
-    const [name, setName] = useState("")
-    const [price, setPrice] = useState(0)
-    const [description, setDescription] = useState("");
-    const [Category, setCategory] = useState("");
-    const [color, setColor] = useState("");
-    const [stock, setStock] = useState(0);
-    const [imagesPreview, setImagesPreview] = useState("");
+    const [product, setProduct] = useState(JSON.parse(localStorage.getItem("product")))
+    const [name, setName] = useState(product.name)
+    const [price, setPrice] = useState(product.price)
+    const [description, setDescription] = useState(product.description)
+    const [Category, setCategory] = useState('');
+    const [color, setColor] = useState(product.color)
+    const [stock, setStock] = useState(product.stock)
+    const [imagesPreview, setImagesPreview] = useState(product.productPictures)
     const [categories, setCategories] = useState([])
-    const [categoryID, setCategoryID] = useState('')
-
+    const [categoryID, setCategoryID] = useState(product.category)
 
     const { auth } = UseAuth()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const arr = []
@@ -34,24 +32,23 @@ const CreateProduct = () => {
         })
     }, [])
 
-    const getCategoryID = () => {
-        axios.get(`http://localhost:3000/category/searchCategory/${Category}`,
+    useEffect(() => {
+        axios.get(
+            `http://localhost:3000/category/searchCategoryByID/${categoryID}`,
             {
                 headers: {
                     'Authorization': `Bearer ${auth.accessToken}`
                 }
-            }).then(response => {
-                setCategoryID(response.data)
-                console.log(response.data)
-            }).catch(e => {
-                console.log(e)
-            })
-    }
+            }
+        ).then(response => {
+            setCategory(response.data)
+        })
+    })
 
-    const create = (e) => {
+    const updateProduct = (e) => {
         e.preventDefault()
-        axios.post(
-            'http://localhost:3000/product/create',
+        axios.put(
+            `http://localhost:3000/product/updateProduct/${product._id}`,
             JSON.stringify({
                 name: name,
                 price: price,
@@ -67,20 +64,35 @@ const CreateProduct = () => {
                     "Authorization": `Bearer ${auth.accessToken}`
                 }
             }
-        ).then(
-            window.alert('product was created')
+        ).then(() => {
+            window.alert("Updated")
+            localStorage.removeItem("product")
+            navigate(`/admin/products`, { replace: true })
+        }
         ).catch(err => {
-            window.alert(err.message)
+            window.alert("Failed to update")
         })
     }
 
+    const getCategoryID = () => {
+        axios.get(`http://localhost:3000/category/searchCategory/${Category}`,
+            {
+                headers: {
+                    'Authorization': `Bearer ${auth.accessToken}`
+                }
+            }).then(response => {
+                setCategoryID(response.data)
+            }).catch(e => {
+                console.log(e)
+            })
+    }
 
     return (
         <Fragment>
             <div className="main">
                 <Sidebar />
                 <div className='newProductContainer'>
-                    <form className="createProductForm" onSubmit={create}>
+                    <form className="createProductForm" onSubmit={updateProduct}>
                         <h1>
                             Create Product
                         </h1>
@@ -98,6 +110,7 @@ const CreateProduct = () => {
                                 type="number"
                                 placeholder="Price"
                                 required
+                                value={price}
                                 onChange={(e) => setPrice(e.target.value)}
                             />
                         </div>
@@ -116,7 +129,7 @@ const CreateProduct = () => {
                                 setCategory(e.target.value)
                                 getCategoryID()
                             }}>
-                                <option value="">Choose Category</option>
+                                <option value="Category">{Category}</option>
                                 {categories.map((cate) => (
                                     <option key={cate} value={cate}>
                                         {cate}
@@ -128,6 +141,7 @@ const CreateProduct = () => {
                             <input
                                 type="number"
                                 placeholder="Stock"
+                                value={stock}
                                 required
                                 onChange={(e) => setStock(e.target.value)}
                             />
@@ -150,7 +164,7 @@ const CreateProduct = () => {
                                 onChange={(e) => setImagesPreview(e.target.value)}
                             />
                         </div>
-                        <input className="createProductBtn" type="submit" value="SUBMIT" />
+                        <input className="createProductBtn" type="submit" value="UPDATE" />
                     </form>
                 </div>
             </div >
@@ -158,4 +172,4 @@ const CreateProduct = () => {
     )
 }
 
-export default CreateProduct
+export default UpdateProduct

@@ -1,9 +1,11 @@
 .main{
-    width: 100w;
+    width: 100vw;
+    height: 100vh;
     max-width: 100%;
     display: grid;
     grid-template-columns: 1fr 5fr;
-    position: absolute;
+    position: fixed;
+    top: 0%;
 }
 
 .mainContainer{

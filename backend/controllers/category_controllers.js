@@ -98,6 +98,15 @@ module.exports = {
     } catch (err) {
       res.status(400).json("Error")
     }
+  },
+
+  searchCategoryByID: async (req, res) => {
+    try {
+      result = await Category.findById(req.params.id)
+      res.send(result.name)
+    } catch (err) {
+      res.send("Error")
+    }
   }
 
 }

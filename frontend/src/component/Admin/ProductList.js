@@ -3,7 +3,7 @@ import axios from 'axios'
 import './ProductList.css'
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { BiEdit, BiWindowOpen } from 'react-icons/bi'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import Sidebar from './Sidebar'
@@ -14,6 +14,7 @@ const ProductList = () => {
 
     let [products, SetProducts] = useState([])
     const { auth } = UseAuth()
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get(
@@ -27,6 +28,11 @@ const ProductList = () => {
             SetProducts(response.data)
         })
     }, [])
+
+    const handleUpdate = async (val) => {
+        localStorage.setItem("product", JSON.stringify(val))
+        navigate(`/admin/updateProduct/${val._id}`, { replace: true })
+    }
 
     const deleteProduct = async (id, name) => {
         confirmAlert({
@@ -73,7 +79,7 @@ const ProductList = () => {
             <div className="productListContainer">
                 <h1 id="productListHeading">ALL PRODUCTS</h1>
                 <table className="productListTable">
-                    <thead>
+                    <thead className="tableHead">
                         <tr>
                             <th>
                                 Product ID
@@ -101,7 +107,9 @@ const ProductList = () => {
                                     <td>{val.stock}</td>
                                     <td>{val.price}</td>
                                     <td>
-                                        <BiEdit />
+                                        <button onClick={(e) => handleUpdate(val)}>
+                                            <BiEdit />
+                                        </button>
                                         <button onClick={(e) => deleteProduct(val._id, val.name, e)}>
                                             <RiDeleteBin6Line />
                                         </button>

@@ -12,22 +12,14 @@ module.exports = {
 
   // CREATE PRODUCT ADMIN ONLY
   createProduct: (req, res, next) => {
-    const { name, price, description, stock, color, category, productPictureURLs } = req.body;
+    const { name, price, description, stock, color, category, productPictures } = req.body;
 
-    // let productPictures = [];
-
-    // if (req.files.length > 0) {
-    //   //you can add here "/public/" before req.files
-    //   productPictures = req.files.map(file => {
-    //     return { img: file.filename }
-    //   });
-    // }
-
-    const product = new Product({
-      name: name,
-      slug: slugify(name),
-      price, description, stock, color, category, productPictureURLs
-    })
+    const product = new Product(
+      {
+        name: name,
+        slug: slugify(name),
+        price, description, stock, color, category, productPictures
+      })
     product.save((error, product) => {
       if (error) {
         return res.status(400).json({ error });
@@ -82,42 +74,23 @@ module.exports = {
     } catch (error) {
       res.status(400).json({ message: "Something went wrong" });
     }
-
-
-    // res.status(200).json({
-    //   success: true,
-    //   product,
-
-    // });
   },
-  //UPDATE PRODUCT ADMIN ONLY
-  // updateProduct: async(req,res,send){
-
-  // }
-
   //GET PRODUCT BY CATEGORY
   getProductByCategory: async (req, res, next) => {
-    try{
-    const findCategory = req.params.categoryID
-    const product = await Product.find({ category: findCategory })
-    if (!product) {
-      return next(new ErrorHander("Something went wrong", 404));
+    try {
+      const findCategory = req.params.categoryID
+      const product = await Product.find({ category: findCategory })
+      if (!product) {
+        return next(new ErrorHander("Something went wrong", 404));
+      }
+
+      res.status(200).send(product)
+    } catch (error) {
+      res.status(400).json({ message: "Something went wrong" });
     }
+  },
 
-    res.status(200).send(product)
-  } catch(error) {
-    res.status(400).json({ message: "Something went wrong" });
-  }
-
-
-  // res.status(200).json({
-  //   success: true,
-  //   product,
-
-  // });
-},
-
-  //UPDATE PRODUCT but does not upload picture- ADMIN ONLY
+  //UPDATE PRODUCT- ADMIN ONLY
   updateProduct: async (req, res, next) => {
     let product = await Product.findById(req.params.id);
     if (!product) {
@@ -138,18 +111,18 @@ module.exports = {
     })
   },
 
-    //DELETE ONE PRODUCT USING ID - ADMIN ONLY
-    deleteProduct: async (req, res, next) => {
-      try {
-        await Product.findByIdAndDelete(req.params.id)
-        res.status(204).json({
-          success: true,
-          message: "Product Deleted Successfully",
-        });
-      } catch (error) {
-        res.status(400).json({ message: "Something went wrong" });
-      }
-    },
+  //DELETE ONE PRODUCT USING ID - ADMIN ONLY
+  deleteProduct: async (req, res, next) => {
+    try {
+      await Product.findByIdAndDelete(req.params.id)
+      res.status(204).json({
+        success: true,
+        message: "Product Deleted Successfully",
+      });
+    } catch (error) {
+      res.status(400).json({ message: "Something went wrong" });
+    }
+  },
 
 }
 

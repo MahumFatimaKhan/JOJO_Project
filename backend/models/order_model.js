@@ -9,10 +9,10 @@ const orderSchema = new mongoose.Schema({
     city: { type: String, required: true },
     phone: { type: String, required: true },
     email: { type: String, required: true },
-    name: {type: String, required: true}
+    name: { type: String, required: true }
   },
   orderDetails: [{
-   
+
     name: {
       type: String,
       required: true,
@@ -25,7 +25,7 @@ const orderSchema = new mongoose.Schema({
       type: Number,
       required: true,
     },
-     _id: {
+    _id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Product',
       required: true
@@ -58,7 +58,7 @@ const orderSchema = new mongoose.Schema({
     required: true,
     default: 0,
   },
- 
+
   shippingPrice: {
     type: Number,
     required: true,

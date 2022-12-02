@@ -15,6 +15,7 @@ import Cart from './component/Cart/Cart.js';
 import ShippingDetails from './component/Cart/ShippingDetail.js';
 import ConfirmOrder from './component/Cart/ConfirmOrder.js';
 import Product from './component/Product/Product'
+import UpdateProduct from './component/Admin/UpdateProduct'
 
 
 
@@ -47,6 +48,7 @@ function App() {
           <Route path="/admin/main" element={<Main />} />
           <Route path="/admin/products" element={<ProductList />} />
           <Route path="/admin/addproducts" element={<CreateProduct />} />
+          <Route path="/admin/updateProduct/:id" element={<UpdateProduct />} />
         </Route>
       </Routes>
       <Footer />
