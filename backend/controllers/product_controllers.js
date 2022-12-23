@@ -18,7 +18,7 @@ module.exports = {
       {
         name: name,
         slug: slugify(name),
-        price, description, stock, color, category, productPictures
+        SKU, price, description, stock, color, category, productPictures
       })
     product.save((error, product) => {
       if (error) {

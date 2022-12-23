@@ -2,7 +2,7 @@ import Header from './component/layout/Header/Header.js'
 import './App.css'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import webfont from 'webfontloader'
-import React from 'react'
+import React, { useState, createContext } from 'react'
 import Footer from './component/layout/Footer/Footer.js'
 import Home from "./component/Home/Home"
 import { LoginRegister } from './component/User/LoginRegister.js'
@@ -19,6 +19,7 @@ import UpdateProduct from './component/Admin/UpdateProduct'
 
 
 
+
 function App() {
 
   //To use fonts from google, installed webfontloader
@@ -30,7 +31,6 @@ function App() {
     })
   }, [])
 
-
   return (
     <Router>
       <Header />
@@ -41,9 +41,7 @@ function App() {
         <Route path="/shippingDetail" element={<ShippingDetails />} />
         <Route path="/ConfirmOrder" element={<ConfirmOrder />} />
         <Route path="/category/:id" element={<Product />} />
-        {/* <Route exact path="/product/:id" component={ProductDetails} /> */}
         <Route path="/category/products/:id" element={<ProductDetails />} />
-
         <Route element={<RequireAuth />} >
           <Route path="/admin/main" element={<Main />} />
           <Route path="/admin/products" element={<ProductList />} />

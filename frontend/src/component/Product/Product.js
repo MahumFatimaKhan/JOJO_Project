@@ -1,5 +1,4 @@
-
-import React, { Fragment, useEffect,useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductCard from "../Home/ProductCard";
 import './Product.css'
@@ -15,34 +14,34 @@ import './Product.css'
 
 export const Product = () => {
 
-  const id=useParams().id;
-   let[products,setProducts]=useState([])
+  const id = useParams().id;
+  let [products, setProducts] = useState([])
 
-   useEffect(()=>{
-        getProductbyCategory();
-   },[])
+  useEffect(() => {
+    getProductbyCategory();
+  }, [])
 
-   const getProductbyCategory=async()=>{
-   let results=await fetch(`http://localhost:3000/product/getProductByCategory/${id}`)
-    results=await results.json();
+  const getProductbyCategory = async () => {
+    let results = await fetch(`http://localhost:3000/product/getProductByCategory/${id}`)
+    results = await results.json();
     setProducts(results)
-   }
-   
-   console.warn(products)
+  }
+
+  console.warn(products)
 
 
-    return(
-<Fragment>
-    <div className="AllProducts">
+  return (
+    <Fragment>
+      <div className="AllProducts">
         <div className="cards" id="cards">
-        { products.map((product) => (
-                <ProductCard key={product._id} pItems={product} />
-              )) }
-              
-      
+          {products.map((product) => (
+            <ProductCard key={product._id} pItems={product} />
+          ))}
+
+
         </div>
-    </div>
-    {/* {resultPerPage < count && (
+      </div>
+      {/* {resultPerPage < count && (
             <div className="paginationBox">
               <Pagination
                 activePage={currentPage}
@@ -60,8 +59,8 @@ export const Product = () => {
               />
             </div>
           )} */}
-</Fragment>
-    );
+    </Fragment>
+  );
 }
 
 export default Product;

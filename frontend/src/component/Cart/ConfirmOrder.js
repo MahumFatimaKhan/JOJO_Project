@@ -3,10 +3,6 @@ import "./ConfirmOrder.css";
 import { Link } from "react-router-dom";
 import {useNavigate} from "react-router-dom"
 
-
-
-
-
 const ConfirmOrder = () => {
 
   const[cartItems,setCartItems]=useState([])
@@ -79,8 +75,6 @@ const orderSubmit=async(e)=>{
     useEffect(()=>{
       setCartItems(getCart()) 
       console.warn(cartItems)
-    
-
       console.warn(shipInfo)
     },[],{})
 
@@ -134,7 +128,6 @@ const orderSubmit=async(e)=>{
           </div>
         </div>
       </div>
-      {/*  */}
       <div>
         <div className="orderSummary">
           <h2>Order Summery</h2>

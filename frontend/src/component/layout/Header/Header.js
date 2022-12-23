@@ -20,8 +20,6 @@ useEffect(()=>{
   const getCategory=async()=>{
     let results=await fetch("http://localhost:3000/category/getCategories")
      results=await results.json();
-     console.log(typeof results)
-     console.log("this is pic "+ results.categoryPicture)
      
      setCategories(results)
     }

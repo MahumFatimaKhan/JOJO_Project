@@ -22,6 +22,9 @@ const productSchema = new mongoose.Schema(
             required: true,
             trim: true
         },
+        SKU: {
+            type: String
+        },
         // thumbnail:{
         //    img:{type:String}
         // },

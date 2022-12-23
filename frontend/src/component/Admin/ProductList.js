@@ -85,6 +85,9 @@ const ProductList = () => {
                                 Product ID
                             </th>
                             <th>
+                                SKU
+                            </th>
+                            <th>
                                 Name
                             </th>
                             <th>
@@ -103,6 +106,7 @@ const ProductList = () => {
                             return (
                                 <tr key={key}>
                                     <td>{val._id}</td>
+                                    <td>{val.SKU}</td>
                                     <td>{val.name}</td>
                                     <td>{val.stock}</td>
                                     <td>{val.price}</td>
