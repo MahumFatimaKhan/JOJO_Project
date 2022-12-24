@@ -42,8 +42,8 @@ const Home = () => {
   //   setCategories(results)
   // }
 
-  console.log("HOME")
-  console.log(categories)
+  // console.log("HOME")
+  // console.log(categories)
 
 
   const slideLeft = () => {
